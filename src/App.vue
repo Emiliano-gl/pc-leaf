@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <Drawer />
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -7,10 +8,11 @@
 </template>
 
 <script>
+import Drawer from "./components/Drawer";
 export default {
   name: "App",
-  data() {
-    return {};
-  }
+  components: {
+    Drawer,
+  },
 };
 </script>
