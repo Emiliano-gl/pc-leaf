@@ -14,21 +14,22 @@ let win;
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
-  { scheme: "app", privileges: { secure: true, standard: true } },
+  { scheme: "app", privileges: { secure: true, standard: true } }
 ]);
 
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 1366,
-    height: 768,
+    width: 1280,
+    height: 720,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
     },
+    resizable: false,
     /* global __static */
-    icon: path.join(__static, "icon.png"),
+    icon: path.join(__static, "icon.png")
   });
 
   win.setOpacity(0.95);
@@ -84,7 +85,7 @@ app.on("ready", async () => {
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
   if (process.platform === "win32") {
-    process.on("message", (data) => {
+    process.on("message", data => {
       if (data === "graceful-exit") {
         app.quit();
       }
@@ -99,6 +100,34 @@ if (isDevelopment) {
 ipcMain.on("cpu-data", (event, arg) => {
   const cpuData = si
     .cpu()
-    .then((data) => event.reply("cpu-data-reply", data))
-    .catch((e) => console.error(e));
+    .then(data => event.reply("cpu-data-reply", data))
+    .catch(e => console.error(e));
+});
+
+ipcMain.on("gpu-data", (event, arg) => {
+  const graphicsData = si
+    .graphics()
+    .then(data => event.reply("gpu-data-reply", data))
+    .catch(e => console.error(e));
+});
+
+ipcMain.on("os-data", (event, arg) => {
+  const osData = si
+    .osInfo()
+    .then(data => event.reply("os-data-reply", data))
+    .catch(e => console.error(e));
+});
+
+ipcMain.on("ram-data", (event, arg) => {
+  const memData = si
+    .mem()
+    .then(data => event.reply("ram-data-reply", data))
+    .catch(e => console.error(e));
+});
+
+ipcMain.on("storage-data", (event, arg) => {
+  const storageData = si
+    .diskLayout()
+    .then(data => event.reply("storage-data-reply", data))
+    .catch(e => console.error(e));
 });

@@ -18,34 +18,29 @@ const routes = [
   {
     path: "/cpu",
     name: "CPU",
-    component: () => import("../views/CPU.vue"),
+    component: () => import("../views/CPU.vue")
   },
   {
     path: "/gpu",
     name: "GPU",
-    component: () => import("../views/GPU.vue"),
-  },
-  {
-    path: "/motherboard",
-    name: "Motherboard",
-    component: () => import("../views/Motherboard.vue"),
+    component: () => import("../views/GPU.vue")
   },
   {
     path: "/ram",
     name: "RAM",
-    component: () => import("../views/RAM.vue"),
+    component: () => import("../views/RAM.vue")
   },
   {
     path: "/storage",
     name: "Storage",
-    component: () => import("../views/Storage.vue"),
-  },
+    component: () => import("../views/Storage.vue")
+  }
 ];
 
 const router = new VueRouter({
   mode: process.env.IS_ELECTRON ? "hash" : "history",
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
 export default router;

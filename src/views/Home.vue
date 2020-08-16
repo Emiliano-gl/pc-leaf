@@ -18,22 +18,8 @@
 </template>
 
 <script>
-import { ipcRenderer } from "electron";
-
 export default {
-  name: "Home",
-  data() {
-    return {
-      cpuInfo: {}
-    };
-  },
-  mounted() {
-    ipcRenderer.send("cpu-data");
-    ipcRenderer.on("cpu-data-reply", (event, arg) => {
-      console.log(arg);
-      this.cpuInfo = arg;
-    });
-  }
+  name: "Home"
 };
 </script>
 

@@ -16,7 +16,7 @@
 
         <v-list-item-content>
           <v-list-item-title>PC Leaf</v-list-item-title>
-          <v-list-item-subtitle>Your system info</v-list-item-subtitle>
+          <v-list-item-subtitle>Your system information</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -53,7 +53,6 @@ export default {
         { title: "GPU", icon: "desktop_windows", route: "/gpu" },
         { title: "Storage", icon: "storage", route: "/storage" },
         { title: "RAM", icon: "sim_card", route: "/ram" },
-        { title: "Motherboard", icon: "developer_board", route: "/motherboard" },
       ],
       color: "#424242",
       permanent: true,
